@@ -71,3 +71,15 @@ id = "kzHSZ6DEgxZ0iRRAGIMjr"
 uri = "file://db-array-fix.zip"
 type = "unspecified"
 title = "DB Array Fix — lib/db/src/index.ts"
+
+[[outputs]]
+id = "h4gW3Q4xbSaAB7qv3CcCP"
+uri = "file://render-fix.zip"
+type = "unspecified"
+title = "Render Fix — 86 files (lib/db + lib/api-zod dist + configs)"
+
+[[outputs]]
+id = "4Rx3_vQBD_T7_UqAyznmQ"
+uri = "file://render-fix-minimal.zip"
+type = "unspecified"
+title = "Render Fix — 6 files only"

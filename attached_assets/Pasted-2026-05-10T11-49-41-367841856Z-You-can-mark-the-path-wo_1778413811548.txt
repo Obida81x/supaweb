@@ -1,0 +1,50 @@
+2026-05-10T11:49:41.367841856Z   You can mark the path "@workspace/db" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+2026-05-10T11:49:41.367845446Z 
+2026-05-10T11:49:41.367849416Z ✘ [ERROR] Could not resolve "@workspace/db"
+2026-05-10T11:49:41.367853077Z 
+2026-05-10T11:49:41.367856917Z     src/routes/projects.ts:3:34:
+2026-05-10T11:49:41.367860867Z       3 │ import { db, projectsTable } from "@workspace/db";
+2026-05-10T11:49:41.367864677Z         ╵                                   ~~~~~~~~~~~~~~~
+2026-05-10T11:49:41.367868157Z 
+2026-05-10T11:49:41.367871707Z   The module "./src/index.ts" was not found on the file system:
+2026-05-10T11:49:41.367875267Z 
+2026-05-10T11:49:41.367878567Z     node_modules/@workspace/db/package.json:7:9:
+2026-05-10T11:49:41.367881998Z       7 │     ".": "./src/index.ts",
+2026-05-10T11:49:41.367885278Z         ╵          ~~~~~~~~~~~~~~~~
+2026-05-10T11:49:41.367888288Z 
+2026-05-10T11:49:41.367891808Z   You can mark the path "@workspace/db" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+2026-05-10T11:49:41.367905079Z 
+2026-05-10T11:49:41.369266378Z ✘ [ERROR] Could not resolve "@workspace/db"
+2026-05-10T11:49:41.369273908Z 
+2026-05-10T11:49:41.369277428Z     src/routes/auth.ts:4:36:
+2026-05-10T11:49:41.369280798Z       4 │ import { db, adminUsersTable } from "@workspace/db";
+2026-05-10T11:49:41.369283498Z         ╵                                     ~~~~~~~~~~~~~~~
+2026-05-10T11:49:41.369285978Z 
+2026-05-10T11:49:41.369288568Z   The module "./src/index.ts" was not found on the file system:
+2026-05-10T11:49:41.369290928Z 
+2026-05-10T11:49:41.369293349Z     node_modules/@workspace/db/package.json:7:9:
+2026-05-10T11:49:41.369295929Z       7 │     ".": "./src/index.ts",
+2026-05-10T11:49:41.369298429Z         ╵          ~~~~~~~~~~~~~~~~
+2026-05-10T11:49:41.369300749Z 
+2026-05-10T11:49:41.369304039Z   You can mark the path "@workspace/db" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+2026-05-10T11:49:41.369307499Z 
+2026-05-10T11:49:41.470761287Z 7 errors
+2026-05-10T11:49:41.473068716Z Error: Build failed with 7 errors:
+2026-05-10T11:49:41.473084037Z src/app.ts:9:21: ERROR: Could not resolve "@workspace/db"
+2026-05-10T11:49:41.473087937Z src/routes/auth.ts:4:36: ERROR: Could not resolve "@workspace/db"
+2026-05-10T11:49:41.473090747Z src/routes/contact.ts:3:41: ERROR: Could not resolve "@workspace/db"
+2026-05-10T11:49:41.473093477Z src/routes/projects.ts:3:34: ERROR: Could not resolve "@workspace/db"
+2026-05-10T11:49:41.473096117Z src/routes/services.ts:3:34: ERROR: Could not resolve "@workspace/db"
+2026-05-10T11:49:41.473098748Z ...
+2026-05-10T11:49:41.473101928Z     at failureErrorWithLog (/opt/render/project/src/node_modules/.pnpm/esbuild@0.27.3/node_modules/esbuild/lib/main.js:1467:15)
+2026-05-10T11:49:41.473105398Z     at /opt/render/project/src/node_modules/.pnpm/esbuild@0.27.3/node_modules/esbuild/lib/main.js:926:25
+2026-05-10T11:49:41.473108008Z     at /opt/render/project/src/node_modules/.pnpm/esbuild@0.27.3/node_modules/esbuild/lib/main.js:1345:9
+2026-05-10T11:49:41.473111238Z     at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+2026-05-10T11:49:41.473114638Z   errors: [Getter/Setter],
+2026-05-10T11:49:41.473117278Z   warnings: [Getter/Setter]
+2026-05-10T11:49:41.473119869Z }
+2026-05-10T11:49:41.488770155Z /opt/render/project/src/artifacts/api-server:
+2026-05-10T11:49:41.488785496Z  ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @workspace/api-server@0.0.0 build: `node ./build.mjs`
+2026-05-10T11:49:41.488790016Z Exit status 1
+2026-05-10T11:49:41.570886276Z ==> Build failed 😞
+2026-05-10T11:49:41.570905687Z ==> Common ways to troubleshoot your deploy: https://render.com/docs/troubleshooting-deploys
