@@ -149,6 +149,32 @@ export interface PublicStats {
   yearsActive: number;
 }
 
+export interface ChangePasswordInput {
+  currentPassword: string;
+  newEmail?: string;
+  newPassword?: string;
+}
+
+export interface SiteSettings {
+  yearsActive: number;
+  /** @nullable */
+  customProjectsCount?: number | null;
+  /** @nullable */
+  customClientsCount?: number | null;
+  /** @nullable */
+  customServicesCount?: number | null;
+}
+
+export interface SiteSettingsUpdate {
+  yearsActive?: number;
+  /** @nullable */
+  customProjectsCount?: number | null;
+  /** @nullable */
+  customClientsCount?: number | null;
+  /** @nullable */
+  customServicesCount?: number | null;
+}
+
 export interface AdminStats {
   projectsCount: number;
   servicesCount: number;

@@ -10,7 +10,7 @@ const translations = {
     },
     home: {
       badge: "Premium Web Development Agency",
-      h1a: "We Build", h1b: "Digital", h1c: "Experiences",
+      h1a: "We Build", h1b: "Digital", h1c: "Treasures",
       subtitle: "From stunning business websites to complex full-stack applications — we craft digital products that perform, convert, and leave a lasting impression.",
       viewPortfolio: "View Portfolio", startProject: "Start Your Project",
       statsProjects: "Projects Delivered", statsServices: "Services Offered",
@@ -109,7 +109,7 @@ const translations = {
     },
     home: {
       badge: "وكالة تطوير ويب متميزة",
-      h1a: "نبني", h1b: "تجارب", h1c: "رقمية",
+      h1a: "نبني", h1b: "كنوز", h1c: "رقمية",
       subtitle: "من مواقع الأعمال الرائعة إلى التطبيقات المتكاملة — نصنع منتجات رقمية تُحقق النتائج وتترك أثراً دائماً.",
       viewPortfolio: "استعرض أعمالنا", startProject: "ابدأ مشروعك",
       statsProjects: "مشروع مُنجز", statsServices: "خدمة مقدَّمة",

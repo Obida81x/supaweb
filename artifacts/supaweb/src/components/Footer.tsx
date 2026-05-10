@@ -1,7 +1,33 @@
 import { Link } from "wouter";
-import { Github, Twitter, Linkedin, Mail } from "lucide-react";
+import { Github, Twitter, Linkedin, Mail, Instagram, Facebook } from "lucide-react";
 import { LogoMark } from "@/components/LogoIcon";
 import { useLanguage } from "@/lib/i18n";
+
+function TikTokIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/>
+    </svg>
+  );
+}
+
+function KhamsatIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="10"/><text x="12" y="16" textAnchor="middle" fontSize="10" fill="white" fontWeight="bold">خ</text>
+    </svg>
+  );
+}
+
+const socialLinks = [
+  { icon: Github, href: "https://github.com/dashboard", label: "GitHub" },
+  { icon: Twitter, href: "https://x.com/supaweb81x", label: "X" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/supa-web-14107040a/", label: "LinkedIn" },
+  { icon: Instagram, href: "https://www.instagram.com/supaweb81x/", label: "Instagram" },
+  { icon: TikTokIcon, href: "https://www.tiktok.com/@supaweb81x", label: "TikTok" },
+  { icon: Facebook, href: "https://facebook.com/supaweb81x", label: "Facebook" },
+  { icon: Mail, href: "mailto:supaweb81x@gmail.com", label: "Email" },
+];
 
 export default function Footer() {
   const { t, isRTL } = useLanguage();
@@ -37,16 +63,14 @@ export default function Footer() {
             <p className="text-zinc-400 text-sm leading-relaxed max-w-xs">
               {t.footer.description}
             </p>
-            <div className="flex items-center gap-3 mt-6">
-              {[
-                { icon: Github, href: "#" },
-                { icon: Twitter, href: "#" },
-                { icon: Linkedin, href: "#" },
-                { icon: Mail, href: "mailto:hello@supaweb.dev" },
-              ].map(({ icon: Icon, href }, i) => (
+            <div className="flex flex-wrap items-center gap-2 mt-6">
+              {socialLinks.map(({ icon: Icon, href, label }) => (
                 <a
-                  key={i}
+                  key={label}
                   href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={label}
                   className="w-9 h-9 rounded-lg glass flex items-center justify-center text-zinc-400 hover:text-violet-400 hover:border-violet-500/30 transition-colors"
                 >
                   <Icon className="w-4 h-4" />

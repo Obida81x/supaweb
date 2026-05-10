@@ -8,6 +8,7 @@
 
 export * from "./adminStats";
 export * from "./adminUser";
+export * from "./changePasswordInput";
 export * from "./contactInput";
 export * from "./contactMessage";
 export * from "./healthStatus";
@@ -20,6 +21,8 @@ export * from "./publicStats";
 export * from "./service";
 export * from "./serviceInput";
 export * from "./serviceUpdate";
+export * from "./siteSettings";
+export * from "./siteSettingsUpdate";
 export * from "./testimonial";
 export * from "./testimonialInput";
 export * from "./testimonialUpdate";

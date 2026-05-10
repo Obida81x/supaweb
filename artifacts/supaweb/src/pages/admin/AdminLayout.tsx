@@ -2,14 +2,15 @@ import { useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { useGetMe, useAdminLogout, getGetMeQueryKey } from "@workspace/api-client-react";
 import { useQueryClient } from "@tanstack/react-query";
-import { LayoutDashboard, FolderOpen, Settings, Star, MessageSquare, LogOut, Zap, ExternalLink } from "lucide-react";
+import { LayoutDashboard, FolderOpen, Wrench, Star, MessageSquare, LogOut, Zap, ExternalLink, SlidersHorizontal } from "lucide-react";
 
 const navItems = [
   { href: "/admin/dashboard", icon: LayoutDashboard, label: "Dashboard" },
   { href: "/admin/projects", icon: FolderOpen, label: "Projects" },
-  { href: "/admin/services", icon: Settings, label: "Services" },
+  { href: "/admin/services", icon: Wrench, label: "Services" },
   { href: "/admin/testimonials", icon: Star, label: "Testimonials" },
   { href: "/admin/messages", icon: MessageSquare, label: "Messages" },
+  { href: "/admin/settings", icon: SlidersHorizontal, label: "Settings" },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {

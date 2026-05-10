@@ -6,6 +6,7 @@ import testimonialsRouter from "./testimonials";
 import contactRouter from "./contact";
 import authRouter from "./auth";
 import statsRouter from "./stats";
+import settingsRouter from "./settings";
 
 const router: IRouter = Router();
 
@@ -16,5 +17,6 @@ router.use(testimonialsRouter);
 router.use(contactRouter);
 router.use(authRouter);
 router.use(statsRouter);
+router.use(settingsRouter);
 
 export default router;

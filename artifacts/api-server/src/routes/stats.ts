@@ -1,21 +1,29 @@
 import { Router, type IRouter } from "express";
-import { eq, count, and } from "drizzle-orm";
-import { db, projectsTable, servicesTable, testimonialsTable, contactMessagesTable } from "@workspace/db";
+import { eq, count } from "drizzle-orm";
+import { db, projectsTable, servicesTable, testimonialsTable, contactMessagesTable, siteSettingsTable } from "@workspace/db";
 
 const router: IRouter = Router();
 
+async function getSettings() {
+  const rows = await db.select().from(siteSettingsTable).limit(1);
+  if (rows.length > 0) return rows[0];
+  const [created] = await db.insert(siteSettingsTable).values({ yearsActive: 5 }).returning();
+  return created;
+}
+
 router.get("/stats", async (_req, res): Promise<void> => {
-  const [[{ value: projectsCount }], [{ value: servicesCount }], [{ value: testimonialsCount }]] = await Promise.all([
+  const [[{ value: projectsCount }], [{ value: servicesCount }], [{ value: testimonialsCount }], settings] = await Promise.all([
     db.select({ value: count() }).from(projectsTable).where(eq(projectsTable.published, true)),
     db.select({ value: count() }).from(servicesTable),
     db.select({ value: count() }).from(testimonialsTable),
+    getSettings(),
   ]);
 
   res.json({
-    projectsCount: Number(projectsCount),
-    servicesCount: Number(servicesCount),
-    testimonialsCount: Number(testimonialsCount),
-    yearsActive: 5,
+    projectsCount: settings.customProjectsCount ?? Number(projectsCount),
+    servicesCount: settings.customServicesCount ?? Number(servicesCount),
+    testimonialsCount: settings.customClientsCount ?? Number(testimonialsCount),
+    yearsActive: settings.yearsActive,
   });
 });
 

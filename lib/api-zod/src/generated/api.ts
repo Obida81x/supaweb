@@ -311,6 +311,47 @@ export const DeleteMessageParams = zod.object({
 });
 
 /**
+ * @summary Change admin email and/or password
+ */
+export const ChangePasswordBody = zod.object({
+  currentPassword: zod.string(),
+  newEmail: zod.string().optional(),
+  newPassword: zod.string().optional(),
+});
+
+export const ChangePasswordResponse = zod.object({
+  id: zod.number(),
+  email: zod.string(),
+});
+
+/**
+ * @summary Get site settings
+ */
+export const GetSettingsResponse = zod.object({
+  yearsActive: zod.number(),
+  customProjectsCount: zod.number().nullish(),
+  customClientsCount: zod.number().nullish(),
+  customServicesCount: zod.number().nullish(),
+});
+
+/**
+ * @summary Update site settings
+ */
+export const UpdateSettingsBody = zod.object({
+  yearsActive: zod.number().optional(),
+  customProjectsCount: zod.number().nullish(),
+  customClientsCount: zod.number().nullish(),
+  customServicesCount: zod.number().nullish(),
+});
+
+export const UpdateSettingsResponse = zod.object({
+  yearsActive: zod.number(),
+  customProjectsCount: zod.number().nullish(),
+  customClientsCount: zod.number().nullish(),
+  customServicesCount: zod.number().nullish(),
+});
+
+/**
  * @summary Get admin dashboard statistics
  */
 export const GetAdminStatsResponse = zod.object({

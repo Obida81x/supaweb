@@ -17,6 +17,7 @@ import AdminProjects from "@/pages/admin/Projects";
 import AdminServices from "@/pages/admin/ServicesAdmin";
 import AdminTestimonials from "@/pages/admin/TestimonialsAdmin";
 import AdminMessages from "@/pages/admin/Messages";
+import AdminSettings from "@/pages/admin/Settings";
 import NotFound from "@/pages/not-found";
 
 const queryClient = new QueryClient({
@@ -55,6 +56,7 @@ function Router() {
       <Route path="/admin/services"><AdminLayout><AdminServices /></AdminLayout></Route>
       <Route path="/admin/testimonials"><AdminLayout><AdminTestimonials /></AdminLayout></Route>
       <Route path="/admin/messages"><AdminLayout><AdminMessages /></AdminLayout></Route>
+      <Route path="/admin/settings"><AdminLayout><AdminSettings /></AdminLayout></Route>
       <Route component={NotFound} />
     </Switch>
   );

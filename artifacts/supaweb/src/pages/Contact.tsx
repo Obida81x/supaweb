@@ -1,8 +1,25 @@
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { Mail, MessageSquare, Send, ChevronDown, ChevronUp, Twitter, Linkedin, Github } from "lucide-react";
+import { Mail, MessageSquare, Send, ChevronDown, ChevronUp, Twitter, Linkedin, Github, Instagram, Facebook } from "lucide-react";
 import { useSubmitContact } from "@workspace/api-client-react";
 import { useLanguage } from "@/lib/i18n";
+
+function TikTokIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/>
+    </svg>
+  );
+}
+
+const socialLinks = [
+  { icon: Twitter, href: "https://x.com/supaweb81x", label: "X / Twitter" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/supa-web-14107040a/", label: "LinkedIn" },
+  { icon: Github, href: "https://github.com/dashboard", label: "GitHub" },
+  { icon: Instagram, href: "https://www.instagram.com/supaweb81x/", label: "Instagram" },
+  { icon: TikTokIcon, href: "https://www.tiktok.com/@supaweb81x", label: "TikTok" },
+  { icon: Facebook, href: "https://facebook.com/supaweb81x", label: "Facebook" },
+];
 
 function FadeIn({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   const ref = useRef(null);
@@ -72,24 +89,24 @@ export default function Contact() {
                 <div className="glass rounded-2xl p-6">
                   <h3 className="font-semibold text-zinc-100 mb-4">{t.contact.contactInfoTitle}</h3>
                   <div className="space-y-4">
-                    <a href="mailto:hello@supaweb.dev" className="flex items-center gap-3 text-sm text-zinc-400 hover:text-violet-400 transition-colors">
+                    <a href="mailto:supaweb81x@gmail.com" className="flex items-center gap-3 text-sm text-zinc-400 hover:text-violet-400 transition-colors">
                       <div className="w-9 h-9 rounded-lg bg-violet-500/10 border border-violet-500/20 flex items-center justify-center shrink-0">
                         <Mail className="w-4 h-4 text-violet-400" />
                       </div>
-                      hello@supaweb.dev
+                      supaweb81x@gmail.com
                     </a>
-                    <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm text-zinc-400 hover:text-violet-400 transition-colors">
+                    <a href="https://wa.me/972592184656" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm text-zinc-400 hover:text-violet-400 transition-colors">
                       <div className="w-9 h-9 rounded-lg bg-green-500/10 border border-green-500/20 flex items-center justify-center shrink-0">
                         <MessageSquare className="w-4 h-4 text-green-400" />
                       </div>
-                      {t.contact.whatsapp}
+                      {t.contact.whatsapp} (+972 59 218 4656)
                     </a>
                   </div>
                   <div className="mt-6 pt-6 border-t border-white/5">
                     <p className="text-xs text-zinc-500 mb-3">{t.contact.followUs}</p>
-                    <div className="flex items-center gap-3">
-                      {[{ icon: Twitter, href: "#" }, { icon: Linkedin, href: "#" }, { icon: Github, href: "#" }].map(({ icon: Icon, href }, i) => (
-                        <a key={i} href={href} className="w-9 h-9 rounded-lg glass flex items-center justify-center text-zinc-400 hover:text-violet-400 hover:border-violet-500/30 transition-colors">
+                    <div className="flex flex-wrap items-center gap-2">
+                      {socialLinks.map(({ icon: Icon, href, label }) => (
+                        <a key={label} href={href} target="_blank" rel="noopener noreferrer" title={label} className="w-9 h-9 rounded-lg glass flex items-center justify-center text-zinc-400 hover:text-violet-400 hover:border-violet-500/30 transition-colors">
                           <Icon className="w-4 h-4" />
                         </a>
                       ))}

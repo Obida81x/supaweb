@@ -416,6 +416,67 @@ paths:
         "204":
           description: Deleted
 
+  # --- Admin account settings ---
+
+  /admin/change-password:
+    post:
+      operationId: changePassword
+      tags: [admin]
+      summary: Change admin email and/or password
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChangePasswordInput"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminUser"
+        "400":
+          description: Validation error
+        "401":
+          description: Not authenticated
+
+  # --- Admin site settings (stats overrides) ---
+
+  /admin/settings:
+    get:
+      operationId: getSettings
+      tags: [admin]
+      summary: Get site settings
+      responses:
+        "200":
+          description: Settings
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SiteSettings"
+        "401":
+          description: Not authenticated
+    patch:
+      operationId: updateSettings
+      tags: [admin]
+      summary: Update site settings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SiteSettingsUpdate"
+      responses:
+        "200":
+          description: Updated settings
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SiteSettings"
+        "401":
+          description: Not authenticated
+
   # --- Admin dashboard stats ---
 
   /admin/stats:
@@ -687,6 +748,42 @@ components:
           type: integer
         yearsActive:
           type: integer
+
+    ChangePasswordInput:
+      type: object
+      required: [currentPassword]
+      properties:
+        currentPassword:
+          type: string
+        newEmail:
+          type: string
+        newPassword:
+          type: string
+
+    SiteSettings:
+      type: object
+      required: [yearsActive]
+      properties:
+        yearsActive:
+          type: integer
+        customProjectsCount:
+          type: ["integer", "null"]
+        customClientsCount:
+          type: ["integer", "null"]
+        customServicesCount:
+          type: ["integer", "null"]
+
+    SiteSettingsUpdate:
+      type: object
+      properties:
+        yearsActive:
+          type: integer
+        customProjectsCount:
+          type: ["integer", "null"]
+        customClientsCount:
+          type: ["integer", "null"]
+        customServicesCount:
+          type: ["integer", "null"]
 
     AdminStats:
       type: object
