@@ -1,5 +1,4 @@
 uploads = []
-outputs = []
 
 [[generated]]
 id = "E-7FRnf3sBJy7k7sCg4QO"
@@ -30,3 +29,15 @@ id = "CR9D7VIkzRsibWBb8x5zp"
 uri = "file://artifacts/supaweb/src/assets/images/about-agency.png"
 type = "image"
 title = "modern agency office"
+
+[[generated]]
+id = "2SnlUQH2IpBP8u6m499l8"
+uri = "file://artifacts/supaweb/public/logo.png"
+type = "image"
+title = "generated_image"
+
+[[outputs]]
+id = "ad3V-E-AC0_aw2NsmkBCA"
+uri = "file://artifacts/supaweb/public/logo.png"
+type = "image"
+title = "AI-Generated SupaWeb Logo"

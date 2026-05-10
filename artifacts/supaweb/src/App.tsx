@@ -2,6 +2,7 @@ import { Switch, Route, Router as WouterRouter } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { LanguageProvider } from "@/lib/i18n";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Home from "@/pages/Home";
@@ -42,45 +43,18 @@ function PublicLayout({ children }: { children: React.ReactNode }) {
 function Router() {
   return (
     <Switch>
-      <Route path="/">
-        <PublicLayout><Home /></PublicLayout>
-      </Route>
-      <Route path="/services">
-        <PublicLayout><Services /></PublicLayout>
-      </Route>
-      <Route path="/portfolio">
-        <PublicLayout><Portfolio /></PublicLayout>
-      </Route>
-      <Route path="/about">
-        <PublicLayout><About /></PublicLayout>
-      </Route>
-      <Route path="/contact">
-        <PublicLayout><Contact /></PublicLayout>
-      </Route>
-
-      {/* Admin */}
-      <Route path="/admin/login">
-        <AdminLogin />
-      </Route>
-      <Route path="/admin">
-        <AdminLayout><AdminDashboard /></AdminLayout>
-      </Route>
-      <Route path="/admin/dashboard">
-        <AdminLayout><AdminDashboard /></AdminLayout>
-      </Route>
-      <Route path="/admin/projects">
-        <AdminLayout><AdminProjects /></AdminLayout>
-      </Route>
-      <Route path="/admin/services">
-        <AdminLayout><AdminServices /></AdminLayout>
-      </Route>
-      <Route path="/admin/testimonials">
-        <AdminLayout><AdminTestimonials /></AdminLayout>
-      </Route>
-      <Route path="/admin/messages">
-        <AdminLayout><AdminMessages /></AdminLayout>
-      </Route>
-
+      <Route path="/"><PublicLayout><Home /></PublicLayout></Route>
+      <Route path="/services"><PublicLayout><Services /></PublicLayout></Route>
+      <Route path="/portfolio"><PublicLayout><Portfolio /></PublicLayout></Route>
+      <Route path="/about"><PublicLayout><About /></PublicLayout></Route>
+      <Route path="/contact"><PublicLayout><Contact /></PublicLayout></Route>
+      <Route path="/admin/login"><AdminLogin /></Route>
+      <Route path="/admin"><AdminLayout><AdminDashboard /></AdminLayout></Route>
+      <Route path="/admin/dashboard"><AdminLayout><AdminDashboard /></AdminLayout></Route>
+      <Route path="/admin/projects"><AdminLayout><AdminProjects /></AdminLayout></Route>
+      <Route path="/admin/services"><AdminLayout><AdminServices /></AdminLayout></Route>
+      <Route path="/admin/testimonials"><AdminLayout><AdminTestimonials /></AdminLayout></Route>
+      <Route path="/admin/messages"><AdminLayout><AdminMessages /></AdminLayout></Route>
       <Route component={NotFound} />
     </Switch>
   );
@@ -88,14 +62,16 @@ function Router() {
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-          <Router />
-        </WouterRouter>
-        <Toaster />
-      </TooltipProvider>
-    </QueryClientProvider>
+    <LanguageProvider>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+            <Router />
+          </WouterRouter>
+          <Toaster />
+        </TooltipProvider>
+      </QueryClientProvider>
+    </LanguageProvider>
   );
 }
 
