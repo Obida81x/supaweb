@@ -143,7 +143,7 @@ export default function Home() {
       </section>
 
       {/* Featured Projects */}
-      {projects && projects.length > 0 && (
+      {Array.isArray(projects) && projects.length > 0 && (
         <section className="py-24 bg-black/20">
           <div className="max-w-7xl mx-auto px-6">
             <FadeIn className="text-center mb-16">
@@ -196,7 +196,7 @@ export default function Home() {
       )}
 
       {/* Testimonials */}
-      {testimonials && testimonials.length > 0 && (
+      {Array.isArray(testimonials) && testimonials.length > 0 && (
         <section className="py-24">
           <div className="max-w-7xl mx-auto px-6">
             <FadeIn className="text-center mb-16">
