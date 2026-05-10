@@ -41,3 +41,9 @@ id = "ad3V-E-AC0_aw2NsmkBCA"
 uri = "file://artifacts/supaweb/public/logo.png"
 type = "image"
 title = "AI-Generated SupaWeb Logo"
+
+[[outputs]]
+id = "O1hu-goCv1stUTnlgV6zC"
+uri = "file://pnpm-lock.yaml"
+type = "unspecified"
+title = "pnpm-lock.yaml (updated)"
