@@ -70,9 +70,9 @@ export default function Services() {
                       </div>
                       <h3 className="text-xl font-semibold text-zinc-100 mb-3">{service.title}</h3>
                       <p className="text-zinc-500 text-sm leading-relaxed mb-6">{service.description}</p>
-                      {service.features && service.features.length > 0 && (
+                      {service.features && (Array.isArray(service.features) ? service.features : []).length > 0 && (
                         <ul className="space-y-2">
-                          {service.features.map((feature) => (
+                          {(Array.isArray(service.features) ? service.features : []).map((feature) => (
                             <li key={feature} className="flex items-center gap-2 text-sm text-zinc-400">
                               <Check className="w-4 h-4 text-violet-400 shrink-0" />
                               {feature}

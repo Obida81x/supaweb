@@ -8,6 +8,26 @@ import {
   DeleteServiceParams,
 } from "@workspace/api-zod";
 
+function parseArr(val: unknown): string[] {
+  if (Array.isArray(val)) return val as string[];
+  if (typeof val !== "string" || !val) return [];
+  if (val.startsWith("{")) {
+    const inner = val.slice(1, -1);
+    if (!inner) return [];
+    const out: string[] = [];
+    let cur = "", inQ = false;
+    for (let i = 0; i < inner.length; i++) {
+      const c = inner[i];
+      if (c === '"' && inner[i - 1] !== "\\") inQ = !inQ;
+      else if (c === "," && !inQ) { out.push(cur); cur = ""; }
+      else cur += c;
+    }
+    out.push(cur);
+    return out.filter(Boolean);
+  }
+  return val.split(",").map((s) => s.trim()).filter(Boolean);
+}
+
 const router: IRouter = Router();
 
 router.get("/services", async (_req, res): Promise<void> => {
@@ -16,7 +36,7 @@ router.get("/services", async (_req, res): Promise<void> => {
     .from(servicesTable)
     .orderBy(servicesTable.sortOrder);
 
-  res.json(services.map((s) => ({ ...s, features: s.features ?? [] })));
+  res.json(services.map((s) => ({ ...s, features: parseArr(s.features) })));
 });
 
 router.post("/admin/services", async (req, res): Promise<void> => {
@@ -42,7 +62,7 @@ router.post("/admin/services", async (req, res): Promise<void> => {
     })
     .returning();
 
-  res.status(201).json({ ...service, features: service.features ?? [] });
+  res.status(201).json({ ...service, features: parseArr(service.features) });
 });
 
 router.patch("/admin/services/:id", async (req, res): Promise<void> => {
@@ -83,7 +103,7 @@ router.patch("/admin/services/:id", async (req, res): Promise<void> => {
     return;
   }
 
-  res.json({ ...service, features: service.features ?? [] });
+  res.json({ ...service, features: parseArr(service.features) });
 });
 
 router.delete("/admin/services/:id", async (req, res): Promise<void> => {

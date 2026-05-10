@@ -119,7 +119,7 @@ export default function Home() {
             <p className="text-zinc-400 max-w-xl mx-auto">{t.home.servicesSubtitle}</p>
           </FadeIn>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {services?.slice(0, 4).map((service, i) => {
+            {(Array.isArray(services) ? services : []).slice(0, 4).map((service, i) => {
               const Icon = iconMap[service.icon] ?? Zap;
               return (
                 <FadeIn key={service.id} delay={i * 0.08}>

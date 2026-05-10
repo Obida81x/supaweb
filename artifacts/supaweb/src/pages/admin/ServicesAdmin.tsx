@@ -13,7 +13,7 @@ function ServiceModal({ service, onClose }: { service?: Service; onClose: () => 
   const update = useUpdateService();
   const [form, setForm] = useState(service ? {
     title: service.title, description: service.description, icon: service.icon,
-    features: service.features.join(", "), sortOrder: service.sortOrder,
+    features: (Array.isArray(service.features) ? service.features : []).join(", "), sortOrder: service.sortOrder,
   } : emptyForm);
 
   const handleSubmit = (e: React.FormEvent) => {
