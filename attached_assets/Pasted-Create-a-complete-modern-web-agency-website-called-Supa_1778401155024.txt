@@ -1,0 +1,148 @@
+Create a complete modern web agency website called “SupaWeb” using React + Vite + Tailwind CSS + Supabase.
+
+The website should look highly professional, modern, fast, and premium, similar to top web agencies.
+
+Main Goal:
+A portfolio and business website for a web development agency that provides:
+
+* Modern websites
+* Full-stack web applications
+* Dashboards
+* E-commerce websites
+* Custom web solutions
+
+Design Requirements:
+
+* Premium modern UI/UX
+* Fully responsive
+* Smooth animations and transitions
+* Clean layout with modern typography
+* Dark mode design preferred
+* Professional gradients and modern sections
+* Fast loading and optimized structure
+
+Required Pages:
+
+1. Home Page
+
+* Large hero section
+* Professional headline
+* CTA buttons:
+
+  * View Portfolio
+  * Start Your Project
+* Animated background or modern visual effects
+* Showcase statistics section
+* Services preview
+* Featured projects preview
+* Testimonials section
+* Contact CTA section
+
+2. Services Page
+   Include services such as:
+
+* Business Websites
+* E-commerce Stores
+* Admin Dashboards
+* Full Stack Applications
+* UI/UX Design
+* Database Integration
+* API Integration
+* Website Deployment
+
+Each service should have:
+
+* Icon
+* Description
+* Features
+
+3. Portfolio Page
+   Display projects in modern cards.
+
+Each project card should contain:
+
+* Project image
+* Project title
+* Short description
+* Technologies used
+* Live demo link
+* GitHub link if available
+
+Add:
+
+* Category filtering
+* Smooth hover animations
+
+4. About Page
+   Include:
+
+* Agency introduction
+* Mission
+* Skills and technologies
+* Workflow/process
+* Why choose SupaWeb
+
+5. Contact Page
+   Include:
+
+* Contact form
+* WhatsApp button
+* Email
+* Social media links
+* FAQ section
+
+Admin Dashboard Requirements:
+
+Create a protected admin dashboard connected to Supabase authentication.
+
+Dashboard Features:
+
+* Admin login page
+* Secure authentication
+* Add new portfolio projects
+* Edit projects
+* Delete projects
+* Upload project images
+* Manage testimonials
+* Manage homepage content
+* Manage services
+* View contact messages
+* Dashboard statistics
+
+Database Requirements (Supabase):
+Create tables for:
+
+* projects
+* testimonials
+* services
+* contact_messages
+* admin_users
+
+Each project should contain:
+
+* title
+* description
+* image
+* technologies
+* category
+* live_url
+* github_url
+* created_at
+
+Technical Requirements:
+
+* React Router
+* Tailwind CSS
+* Framer Motion animations
+* Responsive navbar
+* Reusable components
+* Clean folder structure
+* Loading states
+* Error handling
+* Toast notifications
+* SEO basics
+* Optimized performance
+* Professional code structure
+
+Important:
+The final result should look like a real premium digital agency website ready for clients and freelance work.

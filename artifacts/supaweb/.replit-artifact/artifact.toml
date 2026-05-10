@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "SupaWeb Agency"
+version = "1.0.0"
+id = "artifacts/supaweb"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 18843
+
+[services.development]
+run = "pnpm --filter @workspace/supaweb run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/supaweb", "run", "build" ]
+publicDir = "artifacts/supaweb/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18843"
+BASE_PATH = "/"

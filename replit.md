@@ -1,6 +1,6 @@
-# [Project name]
+# SupaWeb Agency
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+A premium web development agency website with public-facing pages, a portfolio, and a secure admin dashboard to manage content.
 
 ## Run & Operate
 
@@ -14,31 +14,52 @@ _Replace the heading above with the project's name, and this line with one sente
 ## Stack
 
 - pnpm workspaces, Node.js 24, TypeScript 5.9
+- Frontend: React + Vite + Tailwind CSS v4 + Framer Motion + Wouter (routing)
 - API: Express 5
 - DB: PostgreSQL + Drizzle ORM
 - Validation: Zod (`zod/v4`), `drizzle-zod`
 - API codegen: Orval (from OpenAPI spec)
 - Build: esbuild (CJS bundle)
+- Session auth: express-session + connect-pg-simple
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `artifacts/supaweb/` — React + Vite frontend (preview path `/`)
+- `artifacts/api-server/` — Express 5 API server (preview path `/api`)
+- `lib/db/` — Drizzle ORM schema + pool (shared)
+- `lib/api-spec/` — OpenAPI YAML spec (source of truth for all endpoints)
+- `lib/api-client-react/src/generated/api.ts` — auto-generated React Query hooks
+- `lib/api-zod/src/generated/` — auto-generated Zod schemas
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- Contract-first API: all endpoints defined in OpenAPI spec first, then codegen runs to produce hooks and Zod schemas
+- Sessions stored in PostgreSQL via connect-pg-simple (`session` table)
+- Admin auth uses session cookies (`req.session.adminId`); all `/api/admin/*` routes check this
+- No Supabase — using Replit's built-in PostgreSQL via `DATABASE_URL`
+- Dark cinematic theme: deep bg hsl(222 47% 4%), violet accent hsl(263 85% 65%)
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+**Public pages:** Home (hero, stats, services, projects, testimonials, CTA), Services (full grid with features), Portfolio (filterable project grid), About (mission, process, tech stack), Contact (form + FAQ)
+
+**Admin dashboard** (at `/admin/login`, password: `admin@supaweb.dev` / `admin123`):
+- Dashboard: overview stats + recent messages
+- Projects: full CRUD with featured/published toggles
+- Services: full CRUD with sort order and features
+- Testimonials: full CRUD with star ratings
+- Messages: view and delete contact form submissions
 
 ## User preferences
 
-_Populate as you build — explicit user instructions worth remembering across sessions._
+- Dark cinematic theme — keep it dark and premium
+- Violet accent color throughout
 
 ## Gotchas
 
-_Populate as you build — sharp edges, "always run X before Y" rules._
+- The `session` table in PostgreSQL must exist before the API server starts (connect-pg-simple creates it if `createTableIfMissing: true`, but run the DB push first if it fails)
+- Admin password hash was generated with bcryptjs and stored via executeSql — do not re-run naive seed scripts without regenerating the hash
+- `pnpm --filter @workspace/api-spec run codegen` must be re-run after any changes to `lib/api-spec/openapi.yaml`
 
 ## Pointers
 

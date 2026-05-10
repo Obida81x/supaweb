@@ -1,0 +1,32 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "E-7FRnf3sBJy7k7sCg4QO"
+uri = "file://artifacts/supaweb/src/assets/images/hero-bg.png"
+type = "image"
+title = "dark abstract neon background"
+
+[[generated]]
+id = "aOy5NNGoUozlWpNIDSNER"
+uri = "file://artifacts/supaweb/src/assets/images/project-1.png"
+type = "image"
+title = "modern dashboard UI"
+
+[[generated]]
+id = "zVojiF5Df7531E0KgUg0V"
+uri = "file://artifacts/supaweb/src/assets/images/project-2.png"
+type = "image"
+title = "ecommerce mobile app"
+
+[[generated]]
+id = "cJdElvNHS3ml7zCoQ-Htd"
+uri = "file://artifacts/supaweb/src/assets/images/project-3.png"
+type = "image"
+title = "fintech web application"
+
+[[generated]]
+id = "CR9D7VIkzRsibWBb8x5zp"
+uri = "file://artifacts/supaweb/src/assets/images/about-agency.png"
+type = "image"
+title = "modern agency office"
