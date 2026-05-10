@@ -83,3 +83,9 @@ id = "4Rx3_vQBD_T7_UqAyznmQ"
 uri = "file://render-fix-minimal.zip"
 type = "unspecified"
 title = "Render Fix — 6 files only"
+
+[[outputs]]
+id = "vYDimQj4w2Qyjs-GujHmE"
+uri = "file://render-fix-v2.zip"
+type = "unspecified"
+title = "Render Fix v2 — 2 files"

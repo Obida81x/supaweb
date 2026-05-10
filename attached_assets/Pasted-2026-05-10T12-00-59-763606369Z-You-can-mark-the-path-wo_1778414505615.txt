@@ -1,0 +1,50 @@
+2026-05-10T12:00:59.763606369Z   You can mark the path "@workspace/api-zod" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+2026-05-10T12:00:59.763609209Z 
+2026-05-10T12:00:59.763612179Z ✘ [ERROR] Could not resolve "@workspace/api-zod"
+2026-05-10T12:00:59.763614969Z 
+2026-05-10T12:00:59.763617909Z     src/routes/projects.ts:11:7:
+2026-05-10T12:00:59.763621149Z       11 │ } from "@workspace/api-zod";
+2026-05-10T12:00:59.763624059Z          ╵        ~~~~~~~~~~~~~~~~~~~~
+2026-05-10T12:00:59.763626989Z 
+2026-05-10T12:00:59.76363013Z   The module "./dist/index.js" was not found on the file system:
+2026-05-10T12:00:59.76363305Z 
+2026-05-10T12:00:59.763636119Z     node_modules/@workspace/api-zod/package.json:9:17:
+2026-05-10T12:00:59.76363935Z       9 │       "default": "./dist/index.js"
+2026-05-10T12:00:59.76364247Z         ╵                  ~~~~~~~~~~~~~~~~~
+2026-05-10T12:00:59.76364542Z 
+2026-05-10T12:00:59.76364883Z   You can mark the path "@workspace/api-zod" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+2026-05-10T12:00:59.76365167Z 
+2026-05-10T12:00:59.774624622Z ✘ [ERROR] Could not resolve "@workspace/api-zod"
+2026-05-10T12:00:59.774642233Z 
+2026-05-10T12:00:59.774646273Z     src/routes/contact.ts:4:55:
+2026-05-10T12:00:59.774649743Z       4 │ ...SubmitContactBody, DeleteMessageParams } from "@workspace/api-zod";
+2026-05-10T12:00:59.774652583Z         ╵                                                  ~~~~~~~~~~~~~~~~~~~~
+2026-05-10T12:00:59.774655483Z 
+2026-05-10T12:00:59.774658393Z   The module "./dist/index.js" was not found on the file system:
+2026-05-10T12:00:59.774660993Z 
+2026-05-10T12:00:59.774663753Z     node_modules/@workspace/api-zod/package.json:9:17:
+2026-05-10T12:00:59.774667153Z       9 │       "default": "./dist/index.js"
+2026-05-10T12:00:59.774669963Z         ╵                  ~~~~~~~~~~~~~~~~~
+2026-05-10T12:00:59.774672543Z 
+2026-05-10T12:00:59.774676353Z   You can mark the path "@workspace/api-zod" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+2026-05-10T12:00:59.774679333Z 
+2026-05-10T12:00:59.9208027Z 13 errors
+2026-05-10T12:00:59.92408467Z Error: Build failed with 13 errors:
+2026-05-10T12:00:59.924104Z src/app.ts:9:21: ERROR: Could not resolve "@workspace/db"
+2026-05-10T12:00:59.92410721Z src/routes/auth.ts:4:36: ERROR: Could not resolve "@workspace/db"
+2026-05-10T12:00:59.92410941Z src/routes/auth.ts:5:31: ERROR: Could not resolve "@workspace/api-zod"
+2026-05-10T12:00:59.9241117Z src/routes/contact.ts:3:41: ERROR: Could not resolve "@workspace/db"
+2026-05-10T12:00:59.92411415Z src/routes/contact.ts:4:55: ERROR: Could not resolve "@workspace/api-zod"
+2026-05-10T12:00:59.92411727Z ...
+2026-05-10T12:00:59.92412136Z     at failureErrorWithLog (/opt/render/project/src/node_modules/.pnpm/esbuild@0.27.3/node_modules/esbuild/lib/main.js:1467:15)
+2026-05-10T12:00:59.9241252Z     at /opt/render/project/src/node_modules/.pnpm/esbuild@0.27.3/node_modules/esbuild/lib/main.js:926:25
+2026-05-10T12:00:59.9241284Z     at /opt/render/project/src/node_modules/.pnpm/esbuild@0.27.3/node_modules/esbuild/lib/main.js:1345:9
+2026-05-10T12:00:59.924132171Z     at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+2026-05-10T12:00:59.924136191Z   errors: [Getter/Setter],
+2026-05-10T12:00:59.924139491Z   warnings: [Getter/Setter]
+2026-05-10T12:00:59.924142591Z }
+2026-05-10T12:00:59.941253903Z /opt/render/project/src/artifacts/api-server:
+2026-05-10T12:00:59.941274984Z  ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @workspace/api-server@0.0.0 build: `node ./build.mjs`
+2026-05-10T12:00:59.941279104Z Exit status 1
+2026-05-10T12:01:00.002697295Z ==> Build failed 😞
+2026-05-10T12:01:00.002714056Z ==> Common ways to troubleshoot your deploy: https://render.com/docs/troubleshooting-deploys

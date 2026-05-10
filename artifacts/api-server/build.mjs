@@ -9,6 +9,18 @@ import { rm } from "node:fs/promises";
 globalThis.require = createRequire(import.meta.url);
 
 const artifactDir = path.dirname(fileURLToPath(import.meta.url));
+const repoRoot = path.resolve(artifactDir, "../..");
+
+const workspaceResolver = {
+  name: "workspace-resolver",
+  setup(build) {
+    build.onResolve({ filter: /^@workspace\// }, (args) => {
+      const pkgName = args.path.replace("@workspace/", "");
+      const entry = path.resolve(repoRoot, "lib", pkgName, "src", "index.ts");
+      return { path: entry };
+    });
+  },
+};
 
 async function buildAll() {
   const distDir = path.resolve(artifactDir, "dist");
@@ -103,6 +115,7 @@ async function buildAll() {
     ],
     sourcemap: "linked",
     plugins: [
+      workspaceResolver,
       // pino relies on workers to handle logging, instead of externalizing it we use a plugin to handle it
       esbuildPluginPino({ transports: ["pino-pretty"] })
     ],
