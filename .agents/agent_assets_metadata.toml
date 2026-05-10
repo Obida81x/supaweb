@@ -53,3 +53,9 @@ id = "NlDSOghkov9srmqB0Cmvy"
 uri = "file://render.yaml"
 type = "unspecified"
 title = "render.yaml (updated)"
+
+[[outputs]]
+id = "0ur8qtSnEhiHvzURQ5oq5"
+uri = "file://pnpm-workspace.yaml"
+type = "unspecified"
+title = "pnpm-workspace.yaml (updated)"
