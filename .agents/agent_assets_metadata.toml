@@ -65,3 +65,9 @@ id = "u8pkzCBeDkkTekg8ffm9a"
 uri = "file://error-boundary-fix.zip"
 type = "unspecified"
 title = "Error Boundary Fix (2 files)"
+
+[[outputs]]
+id = "kzHSZ6DEgxZ0iRRAGIMjr"
+uri = "file://db-array-fix.zip"
+type = "unspecified"
+title = "DB Array Fix — lib/db/src/index.ts"
