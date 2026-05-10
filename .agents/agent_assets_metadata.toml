@@ -47,3 +47,9 @@ id = "O1hu-goCv1stUTnlgV6zC"
 uri = "file://pnpm-lock.yaml"
 type = "unspecified"
 title = "pnpm-lock.yaml (updated)"
+
+[[outputs]]
+id = "NlDSOghkov9srmqB0Cmvy"
+uri = "file://render.yaml"
+type = "unspecified"
+title = "render.yaml (updated)"
