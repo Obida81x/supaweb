@@ -1,6 +1,7 @@
 import { createRoot } from "react-dom/client";
 import { setBaseUrl } from "@workspace/api-client-react";
 import App from "./App";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 import "./index.css";
 
 // In production (Vercel → Render), VITE_API_BASE_URL points to the Render backend.
@@ -10,4 +11,8 @@ if (apiBaseUrl) {
   setBaseUrl(apiBaseUrl);
 }
 
-createRoot(document.getElementById("root")!).render(<App />);
+createRoot(document.getElementById("root")!).render(
+  <ErrorBoundary>
+    <App />
+  </ErrorBoundary>
+);

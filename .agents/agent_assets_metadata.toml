@@ -59,3 +59,9 @@ id = "0ur8qtSnEhiHvzURQ5oq5"
 uri = "file://pnpm-workspace.yaml"
 type = "unspecified"
 title = "pnpm-workspace.yaml (updated)"
+
+[[outputs]]
+id = "u8pkzCBeDkkTekg8ffm9a"
+uri = "file://error-boundary-fix.zip"
+type = "unspecified"
+title = "Error Boundary Fix (2 files)"
