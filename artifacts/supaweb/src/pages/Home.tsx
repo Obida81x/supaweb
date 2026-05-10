@@ -4,7 +4,22 @@ import { motion, useInView } from "framer-motion";
 import { ArrowRight, ChevronRight, Star, Zap, Globe, Code2, LayoutDashboard, ShoppingCart, Palette, Plug } from "lucide-react";
 import { useGetPublicStats, useListServices, useListProjects, useListTestimonials, getListProjectsQueryKey } from "@workspace/api-client-react";
 import { useLanguage } from "@/lib/i18n";
-import { ensureStringArray } from "@/lib/utils";
+
+function toArray(v: unknown): string[] {
+  if (Array.isArray(v)) return v as string[];
+  if (typeof v === "string" && v.startsWith("{")) {
+    const inner = v.slice(1, -1); if (!inner) return [];
+    const out: string[] = []; let cur = "", inQ = false;
+    for (let i = 0; i < inner.length; i++) {
+      const c = inner[i];
+      if (c === '"' && inner[i-1] !== "\\") inQ = !inQ;
+      else if (c === "," && !inQ) { out.push(cur); cur = ""; }
+      else cur += c;
+    }
+    out.push(cur); return out.filter(Boolean);
+  }
+  return [];
+}
 
 const iconMap: Record<string, React.ElementType> = {
   Globe, Code2, LayoutDashboard, ShoppingCart, Palette, Plug, Database: Code2, Rocket: Zap,
@@ -152,7 +167,7 @@ export default function Home() {
                       <h3 className="font-semibold text-zinc-100 mb-2">{project.title}</h3>
                       <p className="text-sm text-zinc-500 leading-relaxed mb-4 line-clamp-2">{project.description}</p>
                       <div className="flex flex-wrap gap-1.5 mb-4">
-                        {ensureStringArray(project.technologies).slice(0, 3).map((tech) => (
+                        {toArray(project.technologies).slice(0, 3).map((tech) => (
                           <span key={tech} className="px-2 py-0.5 rounded-md bg-violet-500/10 text-violet-300 text-xs font-medium border border-violet-500/20">{tech}</span>
                         ))}
                       </div>
