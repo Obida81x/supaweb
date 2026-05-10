@@ -477,6 +477,208 @@ paths:
         "401":
           description: Not authenticated
 
+  # --- Social links (public) ---
+
+  /social-links:
+    get:
+      operationId: getSocialLinks
+      tags: [public]
+      summary: Get all active social links
+      responses:
+        "200":
+          description: List of active social links
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SocialLink"
+
+  # --- Admin social links CRUD ---
+
+  /admin/social-links:
+    get:
+      operationId: getAdminSocialLinks
+      tags: [admin]
+      summary: Get all social links
+      responses:
+        "200":
+          description: All social links
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SocialLink"
+        "401":
+          description: Not authenticated
+    post:
+      operationId: createSocialLink
+      tags: [admin]
+      summary: Create a social link
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SocialLinkInput"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SocialLink"
+        "401":
+          description: Not authenticated
+
+  /admin/social-links/{id}:
+    patch:
+      operationId: updateSocialLink
+      tags: [admin]
+      summary: Update a social link
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SocialLinkInput"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SocialLink"
+        "401":
+          description: Not authenticated
+        "404":
+          description: Not found
+    delete:
+      operationId: deleteSocialLink
+      tags: [admin]
+      summary: Delete a social link
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+        "401":
+          description: Not authenticated
+        "404":
+          description: Not found
+
+  # --- Payment methods (public) ---
+
+  /payment-methods:
+    get:
+      operationId: getPaymentMethods
+      tags: [public]
+      summary: Get all active payment methods
+      responses:
+        "200":
+          description: List of active payment methods
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PaymentMethod"
+
+  # --- Admin payment methods CRUD ---
+
+  /admin/payment-methods:
+    get:
+      operationId: getAdminPaymentMethods
+      tags: [admin]
+      summary: Get all payment methods
+      responses:
+        "200":
+          description: All payment methods
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PaymentMethod"
+        "401":
+          description: Not authenticated
+    post:
+      operationId: createPaymentMethod
+      tags: [admin]
+      summary: Create a payment method
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PaymentMethodInput"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaymentMethod"
+        "401":
+          description: Not authenticated
+
+  /admin/payment-methods/{id}:
+    patch:
+      operationId: updatePaymentMethod
+      tags: [admin]
+      summary: Update a payment method
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PaymentMethodInput"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaymentMethod"
+        "401":
+          description: Not authenticated
+        "404":
+          description: Not found
+    delete:
+      operationId: deletePaymentMethod
+      tags: [admin]
+      summary: Delete a payment method
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+        "401":
+          description: Not authenticated
+        "404":
+          description: Not found
+
   # --- Admin dashboard stats ---
 
   /admin/stats:
@@ -784,6 +986,78 @@ components:
           type: ["integer", "null"]
         customServicesCount:
           type: ["integer", "null"]
+
+    SocialLink:
+      type: object
+      required: [id, label, icon, url, active, sortOrder]
+      properties:
+        id:
+          type: integer
+        label:
+          type: string
+        icon:
+          type: string
+        url:
+          type: string
+        active:
+          type: boolean
+        sortOrder:
+          type: integer
+
+    SocialLinkInput:
+      type: object
+      required: [label, icon, url]
+      properties:
+        label:
+          type: string
+        icon:
+          type: string
+        url:
+          type: string
+        active:
+          type: boolean
+        sortOrder:
+          type: integer
+
+    PaymentMethod:
+      type: object
+      required: [id, type, label, details, instructions, icon, active, sortOrder]
+      properties:
+        id:
+          type: integer
+        type:
+          type: string
+        label:
+          type: string
+        details:
+          type: string
+        instructions:
+          type: string
+        icon:
+          type: string
+        active:
+          type: boolean
+        sortOrder:
+          type: integer
+
+    PaymentMethodInput:
+      type: object
+      required: [type, label, details]
+      properties:
+        type:
+          type: string
+        label:
+          type: string
+        details:
+          type: string
+        instructions:
+          type: string
+        icon:
+          type: string
+        active:
+          type: boolean
+        sortOrder:
+          type: integer
 
     AdminStats:
       type: object

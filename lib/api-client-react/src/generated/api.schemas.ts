@@ -175,6 +175,44 @@ export interface SiteSettingsUpdate {
   customServicesCount?: number | null;
 }
 
+export interface SocialLink {
+  id: number;
+  label: string;
+  icon: string;
+  url: string;
+  active: boolean;
+  sortOrder: number;
+}
+
+export interface SocialLinkInput {
+  label: string;
+  icon: string;
+  url: string;
+  active?: boolean;
+  sortOrder?: number;
+}
+
+export interface PaymentMethod {
+  id: number;
+  type: string;
+  label: string;
+  details: string;
+  instructions: string;
+  icon: string;
+  active: boolean;
+  sortOrder: number;
+}
+
+export interface PaymentMethodInput {
+  type: string;
+  label: string;
+  details: string;
+  instructions?: string;
+  icon?: string;
+  active?: boolean;
+  sortOrder?: number;
+}
+
 export interface AdminStats {
   projectsCount: number;
   servicesCount: number;

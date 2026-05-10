@@ -352,6 +352,158 @@ export const UpdateSettingsResponse = zod.object({
 });
 
 /**
+ * @summary Get all active social links
+ */
+export const GetSocialLinksResponseItem = zod.object({
+  id: zod.number(),
+  label: zod.string(),
+  icon: zod.string(),
+  url: zod.string(),
+  active: zod.boolean(),
+  sortOrder: zod.number(),
+});
+export const GetSocialLinksResponse = zod.array(GetSocialLinksResponseItem);
+
+/**
+ * @summary Get all social links
+ */
+export const GetAdminSocialLinksResponseItem = zod.object({
+  id: zod.number(),
+  label: zod.string(),
+  icon: zod.string(),
+  url: zod.string(),
+  active: zod.boolean(),
+  sortOrder: zod.number(),
+});
+export const GetAdminSocialLinksResponse = zod.array(
+  GetAdminSocialLinksResponseItem,
+);
+
+/**
+ * @summary Create a social link
+ */
+export const CreateSocialLinkBody = zod.object({
+  label: zod.string(),
+  icon: zod.string(),
+  url: zod.string(),
+  active: zod.boolean().optional(),
+  sortOrder: zod.number().optional(),
+});
+
+/**
+ * @summary Update a social link
+ */
+export const UpdateSocialLinkParams = zod.object({
+  id: zod.coerce.number(),
+});
+
+export const UpdateSocialLinkBody = zod.object({
+  label: zod.string(),
+  icon: zod.string(),
+  url: zod.string(),
+  active: zod.boolean().optional(),
+  sortOrder: zod.number().optional(),
+});
+
+export const UpdateSocialLinkResponse = zod.object({
+  id: zod.number(),
+  label: zod.string(),
+  icon: zod.string(),
+  url: zod.string(),
+  active: zod.boolean(),
+  sortOrder: zod.number(),
+});
+
+/**
+ * @summary Delete a social link
+ */
+export const DeleteSocialLinkParams = zod.object({
+  id: zod.coerce.number(),
+});
+
+/**
+ * @summary Get all active payment methods
+ */
+export const GetPaymentMethodsResponseItem = zod.object({
+  id: zod.number(),
+  type: zod.string(),
+  label: zod.string(),
+  details: zod.string(),
+  instructions: zod.string(),
+  icon: zod.string(),
+  active: zod.boolean(),
+  sortOrder: zod.number(),
+});
+export const GetPaymentMethodsResponse = zod.array(
+  GetPaymentMethodsResponseItem,
+);
+
+/**
+ * @summary Get all payment methods
+ */
+export const GetAdminPaymentMethodsResponseItem = zod.object({
+  id: zod.number(),
+  type: zod.string(),
+  label: zod.string(),
+  details: zod.string(),
+  instructions: zod.string(),
+  icon: zod.string(),
+  active: zod.boolean(),
+  sortOrder: zod.number(),
+});
+export const GetAdminPaymentMethodsResponse = zod.array(
+  GetAdminPaymentMethodsResponseItem,
+);
+
+/**
+ * @summary Create a payment method
+ */
+export const CreatePaymentMethodBody = zod.object({
+  type: zod.string(),
+  label: zod.string(),
+  details: zod.string(),
+  instructions: zod.string().optional(),
+  icon: zod.string().optional(),
+  active: zod.boolean().optional(),
+  sortOrder: zod.number().optional(),
+});
+
+/**
+ * @summary Update a payment method
+ */
+export const UpdatePaymentMethodParams = zod.object({
+  id: zod.coerce.number(),
+});
+
+export const UpdatePaymentMethodBody = zod.object({
+  type: zod.string(),
+  label: zod.string(),
+  details: zod.string(),
+  instructions: zod.string().optional(),
+  icon: zod.string().optional(),
+  active: zod.boolean().optional(),
+  sortOrder: zod.number().optional(),
+});
+
+export const UpdatePaymentMethodResponse = zod.object({
+  id: zod.number(),
+  type: zod.string(),
+  label: zod.string(),
+  details: zod.string(),
+  instructions: zod.string(),
+  icon: zod.string(),
+  active: zod.boolean(),
+  sortOrder: zod.number(),
+});
+
+/**
+ * @summary Delete a payment method
+ */
+export const DeletePaymentMethodParams = zod.object({
+  id: zod.coerce.number(),
+});
+
+/**
  * @summary Get admin dashboard statistics
  */
 export const GetAdminStatsResponse = zod.object({
