@@ -3,6 +3,7 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import { ArrowRight, Github, ExternalLink, Zap } from "lucide-react";
 import { useListProjects } from "@workspace/api-client-react";
 import { useLanguage } from "@/lib/i18n";
+import { ensureStringArray } from "@/lib/utils";
 
 function FadeIn({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   const ref = useRef(null);
@@ -111,7 +112,7 @@ export default function Portfolio() {
                       <h3 className="text-lg font-semibold text-zinc-100 mb-2">{project.title}</h3>
                       <p className="text-sm text-zinc-500 leading-relaxed mb-4 line-clamp-3">{project.description}</p>
                       <div className="flex flex-wrap gap-1.5 mb-5">
-                        {project.technologies.map((tech) => (
+                        {ensureStringArray(project.technologies).map((tech) => (
                           <span key={tech} className="px-2.5 py-1 rounded-lg bg-violet-500/8 text-violet-300 text-xs font-medium border border-violet-500/15">{tech}</span>
                         ))}
                       </div>

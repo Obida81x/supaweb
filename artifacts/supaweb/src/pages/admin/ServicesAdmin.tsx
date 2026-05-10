@@ -101,7 +101,7 @@ export default function AdminServices() {
             <div key={service.id} className="glass rounded-xl p-4 flex items-center gap-4 hover:border-violet-500/20 transition-colors">
               <div className="flex-1 min-w-0">
                 <div className="text-sm font-medium text-zinc-100">{service.title}</div>
-                <div className="text-xs text-zinc-500 mt-0.5">{service.icon} &middot; Order: {service.sortOrder} &middot; {service.features.length} features</div>
+                <div className="text-xs text-zinc-500 mt-0.5">{service.icon} &middot; Order: {service.sortOrder} &middot; {(service.features ?? []).length} features</div>
               </div>
               <div className="flex items-center gap-2">
                 <button onClick={() => setModal({ open: true, service: service as Service })} className="p-1.5 rounded-lg text-zinc-500 hover:text-violet-400 hover:bg-violet-500/10 transition-all"><Pencil className="w-3.5 h-3.5" /></button>

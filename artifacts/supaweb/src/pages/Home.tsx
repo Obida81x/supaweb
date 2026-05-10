@@ -2,8 +2,9 @@ import { useRef } from "react";
 import { Link } from "wouter";
 import { motion, useInView } from "framer-motion";
 import { ArrowRight, ChevronRight, Star, Zap, Globe, Code2, LayoutDashboard, ShoppingCart, Palette, Plug } from "lucide-react";
-import { useGetPublicStats, useListServices, useListProjects, useListTestimonials } from "@workspace/api-client-react";
+import { useGetPublicStats, useListServices, useListProjects, useListTestimonials, getListProjectsQueryKey } from "@workspace/api-client-react";
 import { useLanguage } from "@/lib/i18n";
+import { ensureStringArray } from "@/lib/utils";
 
 const iconMap: Record<string, React.ElementType> = {
   Globe, Code2, LayoutDashboard, ShoppingCart, Palette, Plug, Database: Code2, Rocket: Zap,
@@ -23,7 +24,7 @@ export default function Home() {
   const { t } = useLanguage();
   const { data: stats } = useGetPublicStats();
   const { data: services } = useListServices();
-  const { data: projects } = useListProjects({ category: undefined }, { query: { select: (data) => data.filter((p) => p.featured).slice(0, 3) } });
+  const { data: projects } = useListProjects({ category: undefined }, { query: { queryKey: getListProjectsQueryKey({ category: undefined }), select: (data) => data.filter((p) => p.featured).slice(0, 3) } });
   const { data: testimonials } = useListTestimonials();
 
   return (
@@ -151,7 +152,7 @@ export default function Home() {
                       <h3 className="font-semibold text-zinc-100 mb-2">{project.title}</h3>
                       <p className="text-sm text-zinc-500 leading-relaxed mb-4 line-clamp-2">{project.description}</p>
                       <div className="flex flex-wrap gap-1.5 mb-4">
-                        {project.technologies.slice(0, 3).map((tech) => (
+                        {ensureStringArray(project.technologies).slice(0, 3).map((tech) => (
                           <span key={tech} className="px-2 py-0.5 rounded-md bg-violet-500/10 text-violet-300 text-xs font-medium border border-violet-500/20">{tech}</span>
                         ))}
                       </div>
@@ -192,7 +193,7 @@ export default function Home() {
                 <FadeIn key={testimonial.id} delay={i * 0.1}>
                   <div className="glass rounded-2xl p-6 hover:border-violet-500/20 transition-all duration-300">
                     <div className="flex items-center gap-1 mb-4">
-                      {Array.from({ length: testimonial.rating }).map((_, j) => (
+                      {Array.from({ length: testimonial.rating ?? 0 }).map((_, j) => (
                         <Star key={j} className="w-4 h-4 fill-violet-400 text-violet-400" />
                       ))}
                     </div>

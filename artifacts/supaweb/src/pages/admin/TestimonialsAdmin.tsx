@@ -95,7 +95,7 @@ export default function AdminTestimonials() {
                     <span className="text-xs text-zinc-500">{t.role}, {t.company}</span>
                   </div>
                   <div className="flex items-center gap-1 mb-2">
-                    {Array.from({ length: t.rating }).map((_, i) => <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />)}
+                    {Array.from({ length: t.rating ?? 0 }).map((_, i) => <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />)}
                   </div>
                   <p className="text-sm text-zinc-400 leading-relaxed line-clamp-2">"{t.content}"</p>
                 </div>

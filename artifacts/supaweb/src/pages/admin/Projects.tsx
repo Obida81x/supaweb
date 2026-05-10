@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAdminListProjects, useCreateProject, useUpdateProject, useDeleteProject, getAdminListProjectsQueryKey } from "@workspace/api-client-react";
 import { useQueryClient } from "@tanstack/react-query";
 import { Plus, Pencil, Trash2, X, ExternalLink, Github, Check, Eye, EyeOff } from "lucide-react";
+import { ensureStringArray } from "@/lib/utils";
 
 type Project = {
   id: number; title: string; description: string; imageUrl: string | null;
@@ -17,7 +18,7 @@ function ProjectModal({ project, onClose }: { project?: Project; onClose: () => 
   const update = useUpdateProject();
   const [form, setForm] = useState(project ? {
     title: project.title, description: project.description, imageUrl: project.imageUrl ?? "",
-    technologies: project.technologies.join(", "), category: project.category,
+    technologies: ensureStringArray(project.technologies).join(", "), category: project.category,
     liveUrl: project.liveUrl ?? "", githubUrl: project.githubUrl ?? "",
     featured: project.featured, published: project.published,
   } : emptyForm);
@@ -153,7 +154,7 @@ export default function AdminProjects() {
                     <span className="px-1.5 py-0.5 rounded text-xs bg-zinc-500/10 text-zinc-500 border border-zinc-500/20 flex items-center gap-1"><EyeOff className="w-3 h-3" />Draft</span>
                   )}
                 </div>
-                <div className="text-xs text-zinc-500 mt-0.5">{project.category} &middot; {project.technologies.slice(0, 3).join(", ")}</div>
+                <div className="text-xs text-zinc-500 mt-0.5">{project.category} &middot; {ensureStringArray(project.technologies).slice(0, 3).join(", ")}</div>
               </div>
               <div className="flex items-center gap-2">
                 {project.liveUrl && <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="p-1.5 rounded-lg text-zinc-500 hover:text-violet-400 hover:bg-violet-500/10 transition-all"><ExternalLink className="w-3.5 h-3.5" /></a>}

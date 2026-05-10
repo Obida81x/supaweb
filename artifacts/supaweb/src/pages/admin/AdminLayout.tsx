@@ -15,7 +15,7 @@ const navItems = [
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const [location, navigate] = useLocation();
   const queryClient = useQueryClient();
-  const { data: me, isLoading, error } = useGetMe({ query: { retry: false } });
+  const { data: me, isLoading, error } = useGetMe({ query: { retry: false, queryKey: getGetMeQueryKey() } });
   const logout = useAdminLogout();
 
   useEffect(() => {
