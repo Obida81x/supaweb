@@ -1,6 +1,26 @@
 import { Router, type IRouter } from "express";
 import { eq, and } from "drizzle-orm";
 import { db, projectsTable } from "@workspace/db";
+
+function parseTech(val: unknown): string[] {
+  if (Array.isArray(val)) return val as string[];
+  if (typeof val !== "string" || !val) return [];
+  if (val.startsWith("{")) {
+    const inner = val.slice(1, -1);
+    if (!inner) return [];
+    const result: string[] = [];
+    let cur = "", inQ = false;
+    for (let i = 0; i < inner.length; i++) {
+      const c = inner[i];
+      if (c === '"' && inner[i - 1] !== "\\") { inQ = !inQ; }
+      else if (c === "," && !inQ) { result.push(cur.replace(/\\"/g, '"')); cur = ""; }
+      else { cur += c; }
+    }
+    result.push(cur.replace(/\\"/g, '"'));
+    return result.filter(Boolean);
+  }
+  return val.split(",").map((s) => s.trim()).filter(Boolean);
+}
 import {
   ListProjectsQueryParams,
   GetProjectParams,
@@ -29,7 +49,7 @@ router.get("/projects", async (req, res): Promise<void> => {
 
   res.json(projects.map((p) => ({
     ...p,
-    technologies: p.technologies ?? [],
+    technologies: parseTech(p.technologies),
     createdAt: p.createdAt.toISOString(),
   })));
 });
@@ -52,7 +72,7 @@ router.get("/projects/:id", async (req, res): Promise<void> => {
     return;
   }
 
-  res.json({ ...project, technologies: project.technologies ?? [], createdAt: project.createdAt.toISOString() });
+  res.json({ ...project, technologies: parseTech(project.technologies), createdAt: project.createdAt.toISOString() });
 });
 
 // Admin project routes
@@ -69,7 +89,7 @@ router.get("/admin/projects", async (req, res): Promise<void> => {
 
   res.json(projects.map((p) => ({
     ...p,
-    technologies: p.technologies ?? [],
+    technologies: parseTech(p.technologies),
     createdAt: p.createdAt.toISOString(),
   })));
 });
@@ -101,7 +121,7 @@ router.post("/admin/projects", async (req, res): Promise<void> => {
     })
     .returning();
 
-  res.status(201).json({ ...project, technologies: project.technologies ?? [], createdAt: project.createdAt.toISOString() });
+  res.status(201).json({ ...project, technologies: parseTech(project.technologies), createdAt: project.createdAt.toISOString() });
 });
 
 router.patch("/admin/projects/:id", async (req, res): Promise<void> => {
@@ -146,7 +166,7 @@ router.patch("/admin/projects/:id", async (req, res): Promise<void> => {
     return;
   }
 
-  res.json({ ...project, technologies: project.technologies ?? [], createdAt: project.createdAt.toISOString() });
+  res.json({ ...project, technologies: parseTech(project.technologies), createdAt: project.createdAt.toISOString() });
 });
 
 router.delete("/admin/projects/:id", async (req, res): Promise<void> => {

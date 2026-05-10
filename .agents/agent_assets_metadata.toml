@@ -95,3 +95,9 @@ id = "ZLUo-h3K-eax0-a7gy9se"
 uri = "file://vercel-fix.zip"
 type = "unspecified"
 title = "Vercel Fix — 8 files"
+
+[[outputs]]
+id = "cNPzqp1W8_NNvRps93ex4"
+uri = "file://render-fix-v3.zip"
+type = "unspecified"
+title = "Render Fix v3 — 1 file only"
