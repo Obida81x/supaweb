@@ -55,6 +55,16 @@ A premium web development agency website with public-facing pages, a portfolio, 
 - Dark cinematic theme — keep it dark and premium
 - Violet accent color throughout
 
+## Deployment
+
+See `DEPLOYMENT.md` for full step-by-step instructions. Summary:
+
+- **Frontend → Vercel**: root dir `artifacts/supaweb`, build cmd `cd ../.. && npm install -g pnpm@10 && pnpm install --frozen-lockfile && pnpm --filter @workspace/supaweb run build:vercel`, output `dist`
+- **Backend → Render**: `render.yaml` at repo root configures everything; set `DATABASE_URL`, `SESSION_SECRET`, `CORS_ORIGIN` env vars
+- **Database → Neon**: standard PostgreSQL connection string in `DATABASE_URL`; run `pnpm --filter @workspace/db run push` against Neon before first deploy
+- **Env vars**: see `artifacts/supaweb/.env.example` and `artifacts/api-server/.env.example`
+- **VITE_API_BASE_URL**: set to your Render URL on Vercel; leave unset in Replit (proxy handles it)
+
 ## Gotchas
 
 - The `session` table in PostgreSQL must exist before the API server starts (connect-pg-simple creates it if `createTableIfMissing: true`, but run the DB push first if it fails)

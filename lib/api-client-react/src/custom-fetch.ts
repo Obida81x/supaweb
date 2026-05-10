@@ -360,7 +360,10 @@ export async function customFetch<T = unknown>(
 
   const requestInfo = { method, url: resolveUrl(input) };
 
-  const response = await fetch(input, { ...init, method, headers });
+  // Always include credentials so session cookies are sent in both same-origin
+  // (Replit dev) and cross-origin (Vercel → Render production) requests.
+  // The caller can still override via init.credentials if needed.
+  const response = await fetch(input, { credentials: "include", ...init, method, headers });
 
   if (!response.ok) {
     const errorData = await parseErrorBody(response, method);

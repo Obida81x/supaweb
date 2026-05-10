@@ -32,13 +32,35 @@ app.use(
   }),
 );
 
-app.use(cors({
-  origin: true,
-  credentials: true,
-}));
+const allowedOrigins = (process.env.CORS_ORIGIN ?? "")
+  .split(",")
+  .map((o) => o.trim())
+  .filter(Boolean);
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // No origin = same-origin request (curl, server-to-server) — always allow
+      if (!origin) return callback(null, true);
+      // In development allow everything
+      if (process.env.NODE_ENV !== "production") return callback(null, true);
+      // In production, check explicit allowlist
+      if (allowedOrigins.includes(origin)) return callback(null, true);
+      callback(new Error(`CORS: origin "${origin}" is not allowed`));
+    },
+    credentials: true,
+  }),
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+const sessionSecret = process.env.SESSION_SECRET;
+if (!sessionSecret && process.env.NODE_ENV === "production") {
+  throw new Error("SESSION_SECRET environment variable must be set in production");
+}
+
+const isProduction = process.env.NODE_ENV === "production";
 
 app.use(
   session({
@@ -47,13 +69,15 @@ app.use(
       tableName: "session",
       createTableIfMissing: true,
     }),
-    secret: process.env.SESSION_SECRET ?? "supaweb-secret-key",
+    secret: sessionSecret ?? "supaweb-dev-secret-not-for-production",
     resave: false,
     saveUninitialized: false,
     cookie: {
-      secure: process.env.NODE_ENV === "production",
+      secure: isProduction,
       httpOnly: true,
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+      // sameSite: "none" required for cross-domain cookies (Vercel → Render)
+      sameSite: isProduction ? "none" : "lax",
     },
   }),
 );
